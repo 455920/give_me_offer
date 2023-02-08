@@ -1,0 +1,2 @@
+telnet localhost 12345
+{"method":"Calculator.Sub","Params":["1|2"],"id": 12}
