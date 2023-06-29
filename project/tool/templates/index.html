@@ -14,9 +14,9 @@
     <br>
     <textarea id="output_text" name="output_text" rows="5" cols="50">{{ output_text }}</textarea>
     <br>
-    <input type="submit" name="submit_button" value="Encode">
-    <input type="submit" name="submit_button" value="Decode">
-    <input type="submit" name="submit_button" value="MD5">
+    {% for k, v in buttons.items() %}
+    <input type="submit" name="submit_button" value="{{ k }}">
+    {% endfor %}
 </form>
 </body>
 </html>
