@@ -6,17 +6,27 @@
 <body>
 <h1>Gateway</h1>
 <form method="POST">
-    <label for="input_text">Input:</label>
+    <label for="myTextareaInput">Input:</label>
     <br>
-    <textarea id="input_text" name="input_text" rows="5" cols="50">{{ input_text }}</textarea>
+    <textarea id="myTextareaInput" name="input_text" rows="5" cols="50">{{ input_text }}</textarea>
     <br>
     {% for k, v in buttons.items() %}
     <input type="submit" name="submit_button" value="{{ k }}">
     {% endfor %}
     <br>
-    <label for="output_text">Output:</label>
+    <label for="myTextareaOutput">Output:</label>
     <br>
-    <textarea id="output_text" name="output_text" rows="30" cols="50">{{ output_text }}</textarea>
+    <textarea id="myTextareaOutput" name="output_text" rows="30" cols="50">{{ output_text }}</textarea>
 </form>
 </body>
+<style>
+    #myTextareaInput {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #myTextareaOutput {
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>
 </html>
