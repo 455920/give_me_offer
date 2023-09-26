@@ -10,13 +10,13 @@
     <br>
     <textarea id="input_text" name="input_text" rows="5" cols="50">{{ input_text }}</textarea>
     <br>
-    <label for="output_text">Output:</label>
-    <br>
-    <textarea id="output_text" name="output_text" rows="5" cols="50">{{ output_text }}</textarea>
-    <br>
     {% for k, v in buttons.items() %}
     <input type="submit" name="submit_button" value="{{ k }}">
     {% endfor %}
+    <br>
+    <label for="output_text">Output:</label>
+    <br>
+    <textarea id="output_text" name="output_text" rows="30" cols="50">{{ output_text }}</textarea>
 </form>
 </body>
 </html>

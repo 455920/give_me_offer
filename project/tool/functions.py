@@ -1,5 +1,6 @@
 import base64
 import hashlib
+import random
 
 button_to_function = {}
 
@@ -21,6 +22,18 @@ def calc_md5(input_text):
     return output_text
 
 
+def gen_random_temperature(input_text: str):
+    if not input_text.isdigit():
+        return "输入错误: 必须是一个数字n, 会生成n个随机温度"
+    n = int(input_text)
+    output_text = ''
+    for i in range(1, n+1):
+        r1 = random.randint(362, 370)
+        r2 = random.randint(362, 370)
+        output_text += "(%d) %2.1f %2.1f\n" % (i, r1/10.0, r2/10.0)
+    return output_text
+
+
 def add_button(button_name, function):
     button_to_function[button_name] = function
 
@@ -30,6 +43,7 @@ def register():
     add_button("Encode", base64_encode)
     add_button("Decode", base64_decode)
     add_button("MD5", calc_md5)
+    add_button("生产随机温度", gen_random_temperature)
 
 
 def get_buttons():
