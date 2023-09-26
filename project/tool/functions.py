@@ -26,6 +26,8 @@ def gen_random_temperature(input_text: str):
     if not input_text.isdigit():
         return "输入错误: 必须是一个数字n, 会生成n个随机温度"
     n = int(input_text)
+    if n > 128:
+        n = 128
     output_text = ''
     for i in range(1, n+1):
         r1 = random.randint(362, 370)
