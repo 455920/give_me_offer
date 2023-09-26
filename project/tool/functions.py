@@ -42,10 +42,10 @@ def add_button(button_name, function):
 
 # 增加一个工具按钮,只需要实现在register注册一个按钮, 不需要修改html文件
 def register():
-    add_button("Encode", base64_encode)
-    add_button("Decode", base64_decode)
+    add_button("Base64Encode", base64_encode)
+    add_button("Base64Decode", base64_decode)
     add_button("MD5", calc_md5)
-    add_button("生产随机温度", gen_random_temperature)
+    add_button("生成随机正常的人体温度", gen_random_temperature)
 
 
 def get_buttons():
