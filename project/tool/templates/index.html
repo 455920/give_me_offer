@@ -6,15 +6,16 @@
 <body>
 <h1>工具平台</h1>
 <form method="POST">
-    <label for="myTextareaInput">Input:</label>
+    <label for="myTextareaInput">输入:</label>
     <br>
     <textarea id="myTextareaInput" name="input_text" rows="5" cols="50">{{ input_text }}</textarea>
     <br>
     {% for k, v in buttons.items() %}
     <input type="submit" name="submit_button" value="{{ k }}">
     {% endfor %}
+    <hr/>
     <br>
-    <label for="myTextareaOutput">Output:</label>
+    <label for="myTextareaOutput">输出:</label>
     <br>
     <textarea id="myTextareaOutput" name="output_text" rows="30" cols="50">{{ output_text }}</textarea>
 </form>
