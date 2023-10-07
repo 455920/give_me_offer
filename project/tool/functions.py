@@ -41,7 +41,7 @@ def gen_table1_sql(input_text: str):
     uid = int(input_text)
     tb = uid%1000/100
     db = uid%100
-    return "db_%2d.table1_%d" % (db, tb)
+    return "db_%02d.table1_%d" % (db, tb)
 
 def gen_table2_sql(input_text: str):
     if not input_text.isdigit():
@@ -49,7 +49,7 @@ def gen_table2_sql(input_text: str):
     uid = int(input_text)
     tb = uid%1000/100
     db = uid%100
-    return "db_%2d.table2_%d" % (db, tb)
+    return "db_%02d.table2_%d" % (db, tb)
 
 def add_button(button_name, function):
     button_to_function[button_name] = function
