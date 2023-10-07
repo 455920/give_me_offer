@@ -43,6 +43,13 @@ def gen_table1_sql(input_text: str):
     db = uid%100
     return "db_%2d.table1_%d" % (db, tb)
 
+def gen_table2_sql(input_text: str):
+    if not input_text.isdigit():
+        return "输入错误: 必须是一个数字"
+    uid = int(input_text)
+    tb = uid%1000/100
+    db = uid%100
+    return "db_%2d.table2_%d" % (db, tb)
 
 def add_button(button_name, function):
     button_to_function[button_name] = function
@@ -55,6 +62,7 @@ def register():
     add_button("MD5", calc_md5)
     add_button("生成随机正常的人体温度", gen_random_temperature)
     add_button("table1", gen_table1_sql)
+    add_button("table2", gen_table2_sql)
 
 def get_buttons():
     return button_to_function
