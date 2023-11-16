@@ -1,3 +1,3 @@
 # give me offer
-- [刷题](Algorithm/readme.md)
 - [语言学习](./Language/readme.md)
+- [算法](Algorithm/readme.md)
