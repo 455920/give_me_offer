@@ -4,4 +4,4 @@
 - [windows安装步骤](install_go_in_win.md)
 
 # 运行go程序
-go run test.go
+go run main.go
