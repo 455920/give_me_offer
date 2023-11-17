@@ -7,7 +7,7 @@
 # enabled=1
 # gpgcheck=0
 
-# 2、运行脚本 执行sh install_go.sh
+# 2、运行脚本 执行sh install_go_in_linux.sh
 
 sudo yum update
 
