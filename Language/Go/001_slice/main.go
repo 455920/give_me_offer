@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+
 func Test1() {
 	fmt.Println("==================== Test1 =======================")
 	// 创建一个切片 引用的 底层数组 数据长度为10，最大容量为10
@@ -76,7 +77,75 @@ func Test2() {
 	fmt.Printf("s2[1]:%d\n", s2[1])
 }
 
+func Test3() {
+	fmt.Println("==================== Test3 =======================")
+	// 创建一个切片 引用的 底层数组 数据长度为10，最大容量为20
+	s1 := make([]int, 10, 20)
+	// 初始化s1
+	for i := 0; i < 10; i++ {
+		s1[i] = i
+	}
+
+	s2 := s1[5:10]
+	fmt.Printf("s1-Length:%d\n", len(s1))
+	fmt.Printf("s1-Capacity:%d\n", cap(s1))
+
+	// s2的容量是底层数组的剩余容量
+	fmt.Printf("s2-Length:%d\n", len(s2))
+	fmt.Printf("s2-Capacity:%d\n", cap(s2))
+	fmt.Printf("s2-Address:%p\n", &s1[5])
+	fmt.Printf("s2-Address:%p\n", &s2[0])
+	fmt.Printf("s1[5]:%d\n", s1[5])
+	fmt.Printf("s2[0]:%d\n", s2[0])
+	s1[5] = 123
+
+	fmt.Printf("s1[5]:%d\n", s1[5])
+	fmt.Printf("s2[0]:%d\n", s2[0])
+
+	s2 = append(s2, 999)
+	s1[5] = 321
+
+	fmt.Printf("s1-Address:%p\n", &s1[5])
+	fmt.Printf("s2-Address:%p\n", &s2[0])
+	fmt.Printf("s1[5]:%d\n", s1[5])
+	fmt.Printf("s2[0]:%d\n", s2[0])
+}
+
+func Test4() {
+	fmt.Println("==================== Test4 =======================")
+	// 创建一个切片 引用的 底层数组 数据长度为10，最大容量为20
+	s1 := make([]int, 10, 20)
+	// 初始化s1
+	for i := 0; i < 10; i++ {
+		s1[i] = i
+	}
+
+	fmt.Printf("s1-Length:%d\n", len(s1))
+	fmt.Printf("s1-Capacity:%d\n", cap(s1))
+
+	// s2数据长度2，容量为5
+	s2 := make([]int, 2, 5)
+	n := copy(s1[5:10], s2)
+	// 复制数据个数为s2的数据长度
+	fmt.Printf("copy数据个数:%d\n", n)
+
+	// s2的容量是底层数组的剩余容量
+	fmt.Printf("s2-Length:%d\n", len(s2))
+	fmt.Printf("s2-Capacity:%d\n", cap(s2))
+	fmt.Printf("s2-Address:%p\n", &s1[5])
+	fmt.Printf("s2-Address:%p\n", &s2[0])
+	fmt.Printf("s1[5]:%d\n", s1[5])
+	fmt.Printf("s2[0]:%d\n", s2[0])
+	s1[5] = 123
+
+	fmt.Printf("s1[5]:%d\n", s1[5])
+	fmt.Printf("s2[0]:%d\n", s2[0])
+}
+
 func main() {
 	Test1()
 	Test2()
+	Test3()
+	Test4()
 }
+
