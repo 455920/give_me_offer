@@ -2,20 +2,20 @@ package main
 
 import "fmt"
 
-type Interface1 interface{
+type Interface1 interface {
 	Printf1()
 }
 
-type Interface2 interface{
+type Interface2 interface {
 	Printf2()
 }
 
-type Interface3 interface{
+type Interface3 interface {
 }
 
-type Person struct{
+type Person struct {
 	Name string
-	Age int
+	Age  int
 }
 
 func (p Person) Printf1() {
@@ -28,7 +28,7 @@ func (p Person) Printf2() {
 
 func main() {
 	person := Person{Name: "张三",
-				Age: 18}
+		Age: 18}
 	person.Printf1()
 	person.Printf2()
 	var p1 Interface1

@@ -37,7 +37,7 @@ func Test1() {
 	}
 
 	// 遍历元素
-	for key,value := range kv {
+	for key, value := range kv {
 		fmt.Printf("%s: %d\n", key, value)
 	}
 }

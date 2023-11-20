@@ -5,14 +5,14 @@ import "sync"
 
 func work(n *int, wg *sync.WaitGroup, locker *sync.Mutex, is_lock bool) {
 	defer wg.Done()
-	for i:=0; i< 1000000; i++ {
-		if (is_lock) {
+	for i := 0; i < 1000000; i++ {
+		if is_lock {
 			locker.Lock()
 		}
 		// 解引用
-		(*n)++
+		*n++
 
-		if (is_lock) {
+		if is_lock {
 			locker.Unlock()
 		}
 	}
@@ -40,7 +40,6 @@ func Test1() {
 
 	fmt.Printf("n=%d\n", n)
 }
-
 
 func Test2() {
 	var n int
