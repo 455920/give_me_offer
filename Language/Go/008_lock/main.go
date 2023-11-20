@@ -3,7 +3,8 @@ package main
 import "fmt"
 import "sync"
 
-func work(n *int, endCh chan<- int, locker *sync.Mutex, is_lock bool) {
+func work(n *int, wg *sync.WaitGroup, locker *sync.Mutex, is_lock bool) {
+	defer wg.Done()
 	for i:=0; i< 1000000; i++ {
 		if (is_lock) {
 			locker.Lock()
@@ -15,7 +16,6 @@ func work(n *int, endCh chan<- int, locker *sync.Mutex, is_lock bool) {
 			locker.Unlock()
 		}
 	}
-	close(endCh)
 }
 
 func Test1() {
@@ -24,20 +24,19 @@ func Test1() {
 	var locker sync.Mutex
 
 	// 用于同步协程结束
-	endCh1 := make(chan int)
-	endCh2 := make(chan int)
-	endCh3 := make(chan int)
-	endCh4 := make(chan int)
-	go work(&n, endCh1, &locker, false)
-	go work(&n, endCh2, &locker, false)
-	go work(&n, endCh3, &locker, false)
-	go work(&n, endCh4, &locker, false)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	wg.Add(1)
+	wg.Add(1)
+	wg.Add(1)
+
+	go work(&n, &wg, &locker, false)
+	go work(&n, &wg, &locker, false)
+	go work(&n, &wg, &locker, false)
+	go work(&n, &wg, &locker, false)
 
 	// 等待协程结束
-	_ = <-endCh1
-	_ = <-endCh2
-	_ = <-endCh3
-	_ = <-endCh4
+	wg.Wait()
 
 	fmt.Printf("n=%d\n", n)
 }
@@ -49,20 +48,19 @@ func Test2() {
 	var locker sync.Mutex
 
 	// 用于同步协程结束
-	endCh1 := make(chan int)
-	endCh2 := make(chan int)
-	endCh3 := make(chan int)
-	endCh4 := make(chan int)
-	go work(&n, endCh1, &locker, true)
-	go work(&n, endCh2, &locker, true)
-	go work(&n, endCh3, &locker, true)
-	go work(&n, endCh4, &locker, true)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	wg.Add(1)
+	wg.Add(1)
+	wg.Add(1)
+
+	go work(&n, &wg, &locker, true)
+	go work(&n, &wg, &locker, true)
+	go work(&n, &wg, &locker, true)
+	go work(&n, &wg, &locker, true)
 
 	// 等待协程结束
-	_ = <-endCh1
-	_ = <-endCh2
-	_ = <-endCh3
-	_ = <-endCh4
+	wg.Wait()
 
 	fmt.Printf("n=%d\n", n)
 }

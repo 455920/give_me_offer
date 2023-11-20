@@ -1,10 +1,11 @@
 package main
 
 import (
-	"io"
 	"log"
 	"net"
 	"os"
+	"bufio"
+	"fmt"
 )
 
 func main() {
@@ -13,11 +14,26 @@ func main() {
 		log.Fatal(err)
 	}
 	defer conn.Close()
-	mustCopy(os.Stdout, conn)
-}
 
-func mustCopy(dst io.Writer, src io.Reader) {
-	if _, err := io.Copy(dst, src); err != nil {
-		log.Fatal(err)
+	scanner := bufio.NewScanner(os.Stdin)
+	// 逐行读取输入数据
+	for scanner.Scan() {
+		// 获取输入的文本
+		text := scanner.Text()
+
+		// 打印输入的文本
+		fmt.Println("Input:", text)
+
+		// 如果输入的是"exit"，则退出循环
+		if text == "exit" {
+			break
+		}
+
+		conn.Write([]byte(text))
+	}
+
+	// 检查Scanner是否出现错误
+	if err := scanner.Err(); err != nil {
+		fmt.Println("Error reading standard input:", err)
 	}
 }

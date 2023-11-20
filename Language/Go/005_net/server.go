@@ -1,10 +1,8 @@
 package main
 
 import (
-	"io"
 	"log"
 	"net"
-	"time"
 	"fmt"
 )
 
@@ -28,10 +26,14 @@ func main() {
 func handleConn(c net.Conn) {
 	defer c.Close()
 	for {
-		_, err := io.WriteString(c, time.Now().Format("15:04:05\n"))
+		buffer := make([]byte, 1024)
+		n, err := c.Read(buffer)
 		if err != nil {
-			return // e.g., client disconnected
+			fmt.Printf("receiving data error\n")
+			break;
 		}
-		time.Sleep(1 * time.Second)
+
+		data := string(buffer[:n])
+		fmt.Printf("received data:%s", data)
 	}
 }
