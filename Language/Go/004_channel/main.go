@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func work1(ch_in chan int, ch_out chan int) {
+func work1(ch_in <-chan int, ch_out chan<- int) {
 	// 读取到为nil时 表示channel已经关闭数据已经读完
 	// for语句循环读取
 	for i:= range ch_in {
@@ -16,7 +16,7 @@ func work1(ch_in chan int, ch_out chan int) {
 	close(ch_out)
 	fmt.Printf("work1_end")
 }
-func work2(ch_in chan int) {
+func work2(ch_in <-chan int) {
 	// 读取到为nil时 表示channel已经关闭数据已经读完
 	for true {
 		if val, ok := <-ch_in; ok {
