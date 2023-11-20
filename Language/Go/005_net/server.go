@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net"
-	"fmt"
 )
 
 func main() {
@@ -30,10 +30,10 @@ func handleConn(c net.Conn) {
 		n, err := c.Read(buffer)
 		if err != nil {
 			fmt.Printf("receiving data error\n")
-			break;
+			break
 		}
 
 		data := string(buffer[:n])
-		fmt.Printf("received data:%s", data)
+		fmt.Printf("received data:%s\n", data)
 	}
 }

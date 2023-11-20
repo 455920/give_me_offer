@@ -1,11 +1,11 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
 	"log"
 	"net"
 	"os"
-	"bufio"
-	"fmt"
 )
 
 func main() {
@@ -29,7 +29,11 @@ func main() {
 			break
 		}
 
-		conn.Write([]byte(text))
+		_, err := conn.Write([]byte(text))
+		if err != nil {
+			fmt.Printf("err: %s", err.Error())
+			break
+		}
 	}
 
 	// 检查Scanner是否出现错误
