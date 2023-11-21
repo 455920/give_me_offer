@@ -44,6 +44,4 @@ func main() {
 		// 处理获取受影响行数错误
 	}
 	fmt.Println(affectedRows)
-
-	//
 }

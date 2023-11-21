@@ -58,3 +58,55 @@ if err != nil {
 在上述代码中，需要将table_name替换为实际的表名，并根据需要传递参数来替换?占位符。
 
 这只是一个简单的示例，演示了如何使用Go操作MySQL数据库。实际应用中，可能还需要处理错误、事务、连接池等更复杂的情况。
+
+
+在Go语言中，使用database/sql包进行数据库操作时，可以使用事务来确保一系列数据库操作的原子性和一致性。下面是一个示例，演示如何在Go中使用事务：
+
+```
+import (
+"database/sql"
+_ "github.com/go-sql-driver/mysql"
+)
+
+func main() {
+db, err := sql.Open("mysql", "username:password@tcp(localhost:3306)/database_name")
+if err != nil {
+// 处理连接错误
+}
+defer db.Close()
+
+	// 开始事务
+	tx, err := db.Begin()
+	if err != nil {
+		// 处理事务开始错误
+	}
+
+	// 执行事务操作
+	_, err = tx.Exec("INSERT INTO table_name (column1, column2) VALUES (?, ?)", value1, value2)
+	if err != nil {
+		// 处理执行错误
+		tx.Rollback() // 回滚事务
+		return
+	}
+
+	_, err = tx.Exec("UPDATE table_name SET column1 = ? WHERE column2 = ?", value1, value2)
+	if err != nil {
+		// 处理执行错误
+		tx.Rollback() // 回滚事务
+		return
+	}
+
+	// 提交事务
+	err = tx.Commit()
+	if err != nil {
+		// 处理提交错误
+	}
+}
+```
+在上述代码中，我们使用db.Begin()函数开始一个事务，并返回一个*sql.Tx对象。然后，我们可以使用tx.Exec()函数执行事务操作，如果出现错误，可以使用tx.Rollback()函数回滚事务。最后，使用tx.Commit()函数提交事务。
+
+在实际应用中，可能会有更复杂的事务操作，包括多个查询、更新和删除操作。你可以根据需要在事务中执行这些操作，并根据错误情况决定是回滚事务还是提交事务。
+
+需要注意的是，事务的范围应该尽可能小，以减少锁定数据库资源的时间。在事务中执行的操作应该是原子的，要么全部成功，要么全部失败。
+
+希望这个回答对你有所帮助！如果你还有其他问题，请随时提问。
