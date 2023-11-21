@@ -18,6 +18,8 @@ Vendor目录：Go Modules还支持Vendor模式，可以将依赖项复制到项�
 
 需要注意的是，Go Modules不再依赖于GOPATH，你可以在任意目录下进行Go开发。Go Modules会自动管理依赖项的下载和版本控制，无需手动设置GOPATH。
 
-- 1、在Go语言中，一个目录下只能定义一个包。这是Go语言的约定和规范。
-- 2、目录名和包名最好一致
-- 3、go.mod会自动识别依赖关系并且自动设置gopath目录为go.mod所在目录, 只需要go build即可
+- 1、go mod init 初始化模块，会在根项目下执行后，会在的根目录下生成一个go.mod来管理项目的依赖
+- 2、go.mod会自动识别依赖关系并且自动设置gopath目录为go.mod所在目录, 只需要go build即可
+- 3、go get xxx 添加依赖项，会添加到go.mod中
+- 4、在Go语言中，一个目录下只能定义一个包。这是Go语言的约定和规范。
+- 5、目录名和包名最好一致
