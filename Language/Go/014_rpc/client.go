@@ -12,20 +12,20 @@ func main() {
 		log.Fatal("Dial error:", err)
 	}
 
-	args := &Args{A: 10, B: 5}
-	reply := new(Reply)
+	rqst := &Request{A: 10, B: 5}
+	rsp := new(Respond)
 
-	err = client.Call("MathService.Add", args, reply)
+	err = client.Call("MathService.Add", rqst, rsp)
 	if err != nil {
 		log.Fatal("Add error:", err)
 	}
 
-	fmt.Println("Add result:", reply.Result)
+	fmt.Println("Add result:", rsp.Result)
 
-	err = client.Call("MathService.Divide", args, reply)
+	err = client.Call("MathService.Divide", rqst, rsp)
 	if err != nil {
 		log.Fatal("Divide error:", err)
 	}
 
-	fmt.Println("Divide result:", reply.Result)
+	fmt.Println("Divide result:", rsp.Result)
 }

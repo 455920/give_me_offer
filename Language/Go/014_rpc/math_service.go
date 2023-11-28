@@ -4,23 +4,23 @@ import "errors"
 
 type MathService struct{}
 
-type Args struct {
+type Request struct {
 	A, B int
 }
 
-type Reply struct {
+type Respond struct {
 	Result int
 }
 
-func (m *MathService) Add(args *Args, reply *Reply) error {
-	reply.Result = args.A + args.B
+func (m *MathService) Add(rqst *Request, rsp *Respond) error {
+	rsp.Result = rqst.A + rqst.B
 	return nil
 }
 
-func (m *MathService) Divide(args *Args, reply *Reply) error {
-	if args.B == 0 {
+func (m *MathService) Divide(rqst *Request, rsp *Respond) error {
+	if rqst.B == 0 {
 		return errors.New("division by zero")
 	}
-	reply.Result = args.A / args.B
+	rsp.Result = rqst.A / rqst.B
 	return nil
 }
