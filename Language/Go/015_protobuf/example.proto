@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+message ExampleServiceRqst {
+  string filed1 = 1;
+  string filed2 = 2;
+  string filed3 = 3;
+  string filed4 = 4;
+  string filed5 = 5;
+}
+
+message ExampleServiceRsp {
+  int32 result = 1;
+  string res_info = 2;
+}
+
+service example_server {
+    rpc example_service(ExampleServiceRqst) returns (ExampleServiceRsp);
+}
