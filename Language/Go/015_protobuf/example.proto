@@ -1,16 +1,16 @@
-syntax = "proto3";
+syntax = "proto2";
 
 message ExampleServiceRqst {
-  string filed1 = 1;
-  string filed2 = 2;
-  string filed3 = 3;
-  string filed4 = 4;
-  string filed5 = 5;
+  optional string filed1 = 1;
+  optional string filed2 = 2;
+  optional string filed3 = 3;
+  optional string filed4 = 4;
+  optional string filed5 = 5;
 }
 
 message ExampleServiceRsp {
-  int32 result = 1;
-  string res_info = 2;
+  required int32 result = 1;
+  required string res_info = 2;
 }
 
 service example_server {
