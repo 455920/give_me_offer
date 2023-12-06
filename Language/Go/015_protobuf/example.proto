@@ -1,5 +1,8 @@
 syntax = "proto2";
 
+// 生成go pb文件必须要这个选项
+option go_package = "go_pkg_name/";
+
 message ExampleServiceRqst {
   optional string filed1 = 1;
   optional string filed2 = 2;
